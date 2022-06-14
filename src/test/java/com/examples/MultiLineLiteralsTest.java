@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
  * Example from Spring Cloud GCP's DatastoreSampleApplicationIntegrationTests.
  */
-public class MultiLineCommentsTest {
+public class MultiLineLiteralsTest {
 
     // With Java 11: tedious concatenation to achieve
     //   1) readability
@@ -28,11 +28,11 @@ public class MultiLineCommentsTest {
     // But wait, now the lines are longer than 120 characters. Can this be fixed?
     // Yep; it's as easy as escaping the physical newline character
     String validation17_soft_breaks = """
-            Using Pageable parameter
-            Singer{singerId='singer1', firstName='John', lastName='Doe', \
-            albums=[], firstBand=null, bands=, personalInstruments=}
-            Singer{singerId='singer2', firstName='Jane', lastName='Doe', \
-            albums=[Album{albumName='a', date=2012-01-20}""";
+                Using Pageable parameter
+                Singer{singerId='singer1', firstName='John', lastName='Doe', \
+                albums=[], firstBand=null, bands=, personalInstruments=}
+                Singer{singerId='singer2', firstName='Jane', lastName='Doe', \
+                albums=[Album{albumName='a', date=2012-01-20}""";
 
     @Test
     public void theyAreAllTheSameString() {
