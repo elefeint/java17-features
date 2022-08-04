@@ -2,6 +2,9 @@ package com.examples;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Collection;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class InstanceofTest {
@@ -27,6 +30,40 @@ public class InstanceofTest {
         } else {
             return "no idea";
         }
+    }
+
+    String instanceOf17_withGenerics_DoNotDoThis(Object something) {
+
+        // this, for some bizarre reason, works (probably because ? equivalent to ungenericized)
+        if (something instanceof Collection<?> str) {
+            return "I'm a collection of size " + str.size();
+        }
+
+        /* here are all the ways that don't work:
+
+        //Error:  'Object' cannot be safely cast to 'Collection<? extends CharSequence>'
+        if (something instanceof Collection<? extends CharSequence> str) {
+            return "nope";
+        }
+
+        // Error:  'Object' cannot be safely cast to 'Collection<? super Object>'
+        if (something instanceof Collection<? super Object> str) {
+            return "nope";
+        }
+
+        // Error: 'Object' cannot be safely cast to 'Collection<String>'
+        if (something instanceof Collection<String> str) {
+            return "nope";
+        }
+        */
+
+        return "whatever";
+    }
+
+    @Test
+    void theOnlyGenericWayThatWorks() {
+        assertEquals("I'm a collection of size 2",
+                instanceOf17_withGenerics_DoNotDoThis(List.of("blah", "blah")));
     }
 
     @Test
